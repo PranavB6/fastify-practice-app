@@ -1,0 +1,11 @@
+# print trailing commas wherever possible in multi-line comma-separated syntactic structures
+trailingComma: 'all'
+
+# the number of spaces per indentation-level
+tabWidth: 2
+
+# add a semicolon at the end of every statement
+semi: true
+
+# prefer using single quotes instead of double quotes
+singleQuote: true

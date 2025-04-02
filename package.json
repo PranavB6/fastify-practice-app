@@ -1,0 +1,31 @@
+{
+  "name": "fastify-practice-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:fix": "prettier . --write",
+    "format:check": "prettier . --check",
+    "spell:check": "cspell . --dot",
+    "pre-commit": "lint-staged",
+    "prepare": "husky"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "cspell": "^8.18.1",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.31.0",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "3.5.3",
+    "typescript-eslint": "^8.29.0"
+  }
+}
