@@ -17,6 +17,8 @@ words:
   - pgadmin
   - devcontainer
   - devcontainers
+  - pranav
+  - bodawala
 ignoreWords:
   - dpage
   - noninteractive
