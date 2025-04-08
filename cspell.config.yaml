@@ -14,11 +14,12 @@ dictionaries:
   - html
   - css
 words:
-  - pgadmin
+  - bodawala
   - devcontainer
   - devcontainers
+  - pgadmin
   - pranav
-  - bodawala
+  - typebox
 ignoreWords:
   - dpage
   - noninteractive

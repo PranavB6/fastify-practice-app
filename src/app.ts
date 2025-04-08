@@ -1,77 +1,39 @@
-import Fastify, {
-  FastifyInstance,
-  FastifyReply,
-  FastifyRequest,
-} from 'fastify';
+import { join } from 'node:path';
 
-const fastify = Fastify({
-  logger: {
-    level: 'debug',
-    transport: {
-      target: 'pino-pretty',
-    },
-  },
-});
+import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload';
+import { FastifyPluginAsync, FastifyServerOptions } from 'fastify';
 
-fastify.route({
-  method: 'GET',
-  url: '/',
-  schema: {
-    querystring: {
-      type: 'object',
-      properties: {
-        name: { type: 'string' },
-        excitement: { type: 'integer' },
-      },
-    },
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          hello: { type: 'string' },
-          queryString: { type: 'object' },
-        },
-      },
-    },
-  },
-  handler: async function (request, reply) {
-    const response = reply.send({ hello: 'world', queryString: request.query });
+export interface AppOptions
+  extends FastifyServerOptions,
+    Partial<AutoloadPluginOptions> {}
+// Pass --options via CLI arguments in command to enable these options.
+const options: AppOptions = {};
 
-    response.request.log.info('Here');
+const app: FastifyPluginAsync<AppOptions> = async (
+  fastify,
+  opts,
+): Promise<void> => {
+  // Place here your custom code!
 
-    return response;
-  },
-});
+  // Do not touch the following lines
 
-async function userRoutes(fastify: FastifyInstance) {
-  fastify.get('/', {
-    handler: async (request: FastifyRequest, reply: FastifyReply) => {
-      const body = request.body;
+  // This loads all plugins defined in plugins
+  // those should be support plugins that are reused
+  // through your application
 
-      console.log({ body });
-
-      return reply.code(201).send(body);
-    },
+  void fastify.register(AutoLoad, {
+    dir: join(__dirname, 'plugins'),
+    options: opts,
   });
-}
 
-fastify.register(userRoutes, {
-  prefix: '/api/users',
-});
+  // This loads all plugins defined in routes
+  // define your routes in one of these
 
-['SIGINT', 'SIGTERM'].forEach((signal) => {
-  process.on(signal, async () => {
-    fastify.log.info('Shutting down...');
-    await fastify.close();
-    process.exit(0);
+  void fastify.register(AutoLoad, {
+    dir: join(__dirname, 'routes'),
+    options: opts,
   });
-});
+};
 
-async function main() {
-  await fastify.listen({
-    port: 3000,
-    host: '0.0.0.0',
-  });
-}
-
-main();
+export default app;
+export { app, options };

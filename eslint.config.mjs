@@ -9,7 +9,7 @@ import tseslint from 'typescript-eslint';
 export default defineConfig([
   // 🔹 Ignore files
   {
-    ignores: [],
+    ignores: ['**/dist/**'],
   },
 
   // 🌍 Global Configuration - Applies to JavaScript & TypeScript Files
@@ -79,7 +79,7 @@ export default defineConfig([
 
   // 🎯 Special Rules for ESLint Config File (eslint.config.js)
   {
-    files: ['eslint.config.js'],
+    files: ['eslint.config.mjs'],
     rules: {
       'import-x/no-named-as-default-member': 'off', // Disable named export errors
     },
