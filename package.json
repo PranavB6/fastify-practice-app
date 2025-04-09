@@ -12,7 +12,7 @@
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
-    "test": "npm run build:ts && tsc -p test/tsconfig.json && c8 node --test -r ts-node/register \"test/**/*.ts\"",
+    "test": "tap run",
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
     "format:fix": "prettier . --write",
@@ -51,6 +51,7 @@
     "lint-staged": "^15.5.0",
     "nodemon": "^3.1.9",
     "prettier": "3.5.3",
+    "tap": "^21.1.0",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.29.0"
   }

@@ -4,7 +4,8 @@
     "source.fixAll.eslint": "always"
   },
   "files.associations": {
-    ".prettierrc": "yaml"
+    ".prettierrc": "yaml",
+    ".taprc": "yaml"
   },
   "[javascript][typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

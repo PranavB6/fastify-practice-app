@@ -1,15 +1,13 @@
-import * as assert from 'node:assert';
-import { test } from 'node:test';
-
 import Fastify from 'fastify';
+import t from 'tap';
 
 import Support from '../../src/plugins/support';
 
-test('support works standalone', async (_t) => {
+t.test('support works standalone', async (t) => {
   const fastify = Fastify();
 
   void fastify.register(Support);
   await fastify.ready();
 
-  assert.equal(fastify.someSupport(), 'hugs');
+  t.equal(fastify.someSupport(), 'hugs');
 });

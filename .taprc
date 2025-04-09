@@ -1,0 +1,6 @@
+timeout: 30
+tsconfig: ./test/tsconfig.test.json
+before: ./test/setup-tests.ts
+after: ./test/teardown-tests.ts
+include:
+  - ./test/**/*.test.ts

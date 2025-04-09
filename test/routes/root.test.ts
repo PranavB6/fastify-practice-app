@@ -1,14 +1,16 @@
-import * as assert from 'node:assert';
-import { test } from 'node:test';
+import t from 'tap';
 
-import { build } from '../helper';
+import { buildApp } from '../helper';
 
-test('default root route', async (t) => {
-  const app = await build(t);
+t.test('default root route', async (t) => {
+  const app = await buildApp(t);
 
-  const res = await app.inject({
-    url: '/',
+  t.test('GET /', async (t) => {
+    const res = await app.inject({
+      url: '/',
+    });
+
+    t.equal(res.statusCode, 200);
+    t.same(JSON.parse(res.payload), { root: true });
   });
-
-  assert.deepStrictEqual(JSON.parse(res.payload), { root: true });
 });
